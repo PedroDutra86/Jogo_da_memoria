@@ -19,13 +19,57 @@ const createElement = (tag, className) => {
     return element;
 }
 
+let firstCard = '';
+let secondCard = '';
+
+const checkCards = () => {
+    const firstCharacter = firstCard.getAttribute('data-character');
+    const secondCharacter = secondCard.getAttribute('data-character');
+
+    if (firstCharacter == secondCharacter) {
+
+        firstCard.firstChild.classList.add('disabled_card');
+        secondCard.firstChild.classList.add('disabled_card');
+
+        firstCard = '';
+        secondCard = '';
+
+    }   else {
+
+        setTimeout(() => {
+            
+            firstCard.classList.remove('reveal_card');
+            secondCard.classList.remove('reveal_card');
+
+            firstCard = '';
+            secondCard = '';
+
+        }, 500);
+
+
+    }
+}
+
 const revealCard = ({ target }) => {
 
     if (target.parentNode.className.includes('reveal_card')) {
         return;
     }
 
-    target.parentNode.classList.add('reveal_card')
+    if (firstCard == '') {
+        target.parentNode.classList.add('reveal_card');
+        firstCard = target.parentNode;
+
+    } else if (secondCard == '') {
+
+        target.parentNode.classList.add('reveal_card');
+        secondCard = target.parentNode;
+
+        checkCards();
+
+    }
+
+    
 }
 
 const createCard = (character) => {
@@ -40,6 +84,8 @@ const createCard = (character) => {
     card.appendChild(back);
 
     card.addEventListener('click', revealCard);
+    card.setAttribute('data-character', character)
+
     return card;
 }
 
