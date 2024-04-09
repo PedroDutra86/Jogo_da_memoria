@@ -1,4 +1,6 @@
 const grid = document.querySelector('.grid');
+const spanPlayer = document.querySelector('.player');
+const timer = document.querySelector('.timer');
 
 const characters = [
     'Bebbikas',
@@ -22,6 +24,15 @@ const createElement = (tag, className) => {
 let firstCard = '';
 let secondCard = '';
 
+const checkEndGame = () => {
+    const disabledCards = document.querySelectorAll('.disabled_card');
+
+    if (disabledCards.length == 20) {
+        clearInterval(this.loop)
+        alert(`Parabéns ${spanPlayer.innerHTML}! Seu tempo foi: ${timer.innerHTML} segundos.`);
+    }
+}
+
 const checkCards = () => {
     const firstCharacter = firstCard.getAttribute('data-character');
     const secondCharacter = secondCard.getAttribute('data-character');
@@ -33,6 +44,8 @@ const checkCards = () => {
 
         firstCard = '';
         secondCard = '';
+
+        checkEndGame();
 
     }   else {
 
@@ -102,4 +115,19 @@ const loadGame = () => {
     });
 }
 
-loadGame();
+const starTimer = () => {
+
+    this.loop = setInterval(() => {
+        const currentTime = +timer.innerHTML;
+        timer.innerHTML = currentTime + 1
+
+}, 1000);
+
+}
+
+window.onload = () => {
+    spanPlayer.innerHTML = localStorage.getItem('player');
+    starTimer();
+    loadGame();
+}
+

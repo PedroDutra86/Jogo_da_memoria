@@ -1,3 +1,33 @@
+main {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    width: 100%;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 20px 50px;
+}
+
+span {
+    background-color: transparent;
+    color: #211F1F;
+}
+
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    padding: 30px;
+    margin: 0px 0px 30px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2em;
+}
+
 * { 
     background-color: #211F1F;
 }
@@ -8,7 +38,7 @@
     gap: 15PX;
     width: 100%;
     max-width: 800px;
-    margin: 100px auto;
+    margin: 0px auto;
 }
 
 .card {
